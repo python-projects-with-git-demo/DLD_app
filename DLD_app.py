@@ -30,4 +30,37 @@ class deci_binary_conversion:
 a = float(input())
 c = deci_binary_conversion(a)
 print(c.result)
+class deci_octal_conversion:
+    def __init__(self, a):
+        self.r1 = ''
+        self.r2 = ''
+        self.oct_ = int(a)
+        self.oct_dec = a - self.oct_
+        self.on = self.octal_no(self.oct_)
+        self.od = self.octal_dec(self.oct_dec)
+        self.result = self.octal_result(self.on, self.od)
 
+    def octal_result(self, on, od):
+        return "{:.4f}".format(float(on + '.' + od))
+
+    def octal_no(self, oct_):
+        self.r1 += str(oct_ % 8)
+        if oct_ // 8 == 0:
+            return self.r1[::-1]
+        else:
+            return self.octal_no(oct_ // 8)
+
+    def octal_dec(self, oct_dec):
+        while oct_dec-int(oct_dec)!= 0:
+            oct_dec *= 8
+            if oct_dec < 1:
+                self.r2 += '0'   
+            else:
+                self.r2 += str(int(oct_dec))
+                oct_dec -= int(oct_dec)
+                
+        print(self.r2)
+        return self.r2
+
+ck = deci_octal_conversion(a)
+print(ck.result)
