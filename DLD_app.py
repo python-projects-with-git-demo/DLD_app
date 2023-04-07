@@ -122,3 +122,26 @@ class deci_hexa_conversion:
                     self.r2+='F'
                     hex_dec -= int(hex_dec)
         return self.r2
+class binary_to_decimal:
+    def __init__(self,a):
+        self.r1=0
+        self.r2=0
+        self.bin_value=str(a)
+        self.bin_dec,self.bin_poi=(self.bin_value.split('.'))
+        self.bd=self.binary_decimal(self.bin_dec)
+        self.bp=self.binary_point(self.bin_poi)
+        self.result=self.decimal_result(self.bd,self.bp)
+    def decimal_result(self,k,t):
+        return k+t
+        
+    def binary_decimal(self,k):
+        k=[int(i) for i in k[::-1]]
+        for i in range(len(k)):
+            self.r1+=k[i]*(2**i)    
+        return self.r1
+    def binary_point(self,k):
+        k=[int(i) for i in k]
+        for i in range(len(k)):
+            self.r2+=k[i]*(2**(-(i+1)))
+        
+        return self.r2  
