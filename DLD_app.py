@@ -27,9 +27,6 @@ class deci_binary_conversion:
                 bin_dec -= 1
                 self.r2 += '1'
         return self.r2
-a = float(input())
-c = deci_binary_conversion(a)
-print(c.result)
 class deci_octal_conversion:
     def __init__(self, a):
         self.r1 = ''
@@ -62,5 +59,66 @@ class deci_octal_conversion:
         print(self.r2)
         return self.r2
 
-ck = deci_octal_conversion(a)
-print(ck.result)
+
+class deci_hexa_conversion:
+    def __init__(self, a):
+        self.r1 = ''
+        self.r2 = ''
+        self.hex_ = int(a)
+        self.hex_dec = a - self.hex_
+        self.hn = self.hexa_no(self.hex_)
+        self.hd = self.hexa_dec(self.hex_dec)
+        self.result = self.hexa_result(self.hn, self.hd)
+
+    def hexa_result(self, hn, hd):
+        return "{}.{:.4s}".format(hn,hd)
+
+    def hexa_no(self, hex_):
+        if hex_%16<10:
+            self.r1 += str(hex_ % 16)
+        elif hex_%16==10:
+            self.r1+='A'
+        elif hex_%16==11:
+            self.r1+='B'
+        elif hex_%16==12:
+            self.r1+='C'
+        elif hex_%16==13:
+            self.r1+='D'
+        elif hex_%16==14:
+            self.r1+='E'
+        elif hex_%16==15:
+            self.r1+='F'
+            
+        if hex_ // 16 == 0:
+            return self.r1[::-1]
+        else:
+            return self.hexa_no(hex_ // 16)
+
+    def hexa_dec(self, hex_dec):
+        while hex_dec-int(hex_dec)!= 0:
+            hex_dec *= 16
+            if hex_dec < 1:
+                self.r2 += '0'   
+            else:
+                if int(hex_dec)<10:
+                    self.r2 += str(int(hex_dec))
+                    hex_dec -= int(hex_dec)
+                elif int(hex_dec)==10:
+                    self.r2+='A'
+                    hex_dec -= int(hex_dec)
+                elif int(hex_dec)==11:
+                    self.r2+='B'
+                    hex_dec -= int(hex_dec)
+                elif int(hex_dec)==12:
+                    self.r2+='C'
+                    hex_dec -= int(hex_dec)
+                elif int(hex_dec)==13:
+                    self.r2+='D'
+                    hex_dec -= int(hex_dec)
+                elif int(hex_dec)==14:
+                    self.r2+='E'
+                    hex_dec -= int(hex_dec)
+                elif int(hex_dec)==15:
+                    self.r2+='F'
+                    hex_dec -= int(hex_dec)
+        return self.r2
