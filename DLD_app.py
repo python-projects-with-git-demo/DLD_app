@@ -145,3 +145,26 @@ class binary_to_decimal:
             self.r2+=k[i]*(2**(-(i+1)))
         
         return self.r2  
+class octal_to_decimal:
+    def __init__(self,a):
+        self.r1=0
+        self.r2=0
+        self.oct_value=str(a)
+        self.oct_dec,self.oct_poi=(self.oct_value.split('.'))
+        self.od=self.octal_decimal(self.oct_dec)
+        self.op=self.octal_point(self.oct_poi)
+        self.result=self.decimal_result(self.od,self.op)
+    def decimal_result(self,k,t):
+        return k+t
+        
+    def octal_decimal(self,k):
+        k=[int(i) for i in k[::-1]]
+        for i in range(len(k)):
+            self.r1+=k[i]*(8**i)    
+        return self.r1
+    def octal_point(self,k):
+        k=[int(i) for i in k]
+        for i in range(len(k)):
+            self.r2+=k[i]*(8**(-(i+1)))
+        
+        return self.r2
