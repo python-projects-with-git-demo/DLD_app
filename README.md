@@ -1,0 +1,2 @@
+# DLD_app
+this not an application of use. I am developing this project to improve my program skills and get in hand expereince with git hub.the programing langauage used in the entire program is sole based python. for gui i have used pythons old gui 'tkinter'. coming to me, my name is pavan I am first year under graduating student who is extremly passionaite about programming. coming to project, the project is about DLD(digital logic design) one of collage opted subject. if you anything about this feel free to contribute this project
