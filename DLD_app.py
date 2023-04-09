@@ -2,6 +2,7 @@ class deci_binary_conversion:
     def __init__(self, a):
         self.r1 = ''
         self.r2 = ''
+        a=float(a)
         self.bin_ = int(a)
         self.bin_dec = a - self.bin_
         self.bn = self.binary_no(self.bin_)
@@ -27,10 +28,13 @@ class deci_binary_conversion:
                 bin_dec -= 1
                 self.r2 += '1'
         return self.r2
+a = str(input('enter a number \n'))
+
 class deci_octal_conversion:
     def __init__(self, a):
         self.r1 = ''
         self.r2 = ''
+        a=float(a)
         self.oct_ = int(a)
         self.oct_dec = a - self.oct_
         self.on = self.octal_no(self.oct_)
@@ -56,14 +60,14 @@ class deci_octal_conversion:
                 self.r2 += str(int(oct_dec))
                 oct_dec -= int(oct_dec)
                 
-        print(self.r2)
+        
         return self.r2
-
 
 class deci_hexa_conversion:
     def __init__(self, a):
         self.r1 = ''
         self.r2 = ''
+        a=float(a)
         self.hex_ = int(a)
         self.hex_dec = a - self.hex_
         self.hn = self.hexa_no(self.hex_)
@@ -121,11 +125,17 @@ class deci_hexa_conversion:
                 elif int(hex_dec)==15:
                     self.r2+='F'
                     hex_dec -= int(hex_dec)
+                
+                    
+       
         return self.r2
+
+
 class binary_to_decimal:
     def __init__(self,a):
         self.r1=0
         self.r2=0
+        a=float(a)
         self.bin_value=str(a)
         self.bin_dec,self.bin_poi=(self.bin_value.split('.'))
         self.bd=self.binary_decimal(self.bin_dec)
@@ -145,10 +155,13 @@ class binary_to_decimal:
             self.r2+=k[i]*(2**(-(i+1)))
         
         return self.r2  
+        
+
 class octal_to_decimal:
     def __init__(self,a):
         self.r1=0
         self.r2=0
+        a=float(a)
         self.oct_value=str(a)
         self.oct_dec,self.oct_poi=(self.oct_value.split('.'))
         self.od=self.octal_decimal(self.oct_dec)
@@ -166,5 +179,63 @@ class octal_to_decimal:
         k=[int(i) for i in k]
         for i in range(len(k)):
             self.r2+=k[i]*(8**(-(i+1)))
+        
+        return self.r2
+
+class hexa_to_decimal:
+    def __init__(self,a):
+        self.r1=0
+        self.r2=0
+        if '.' not in a:
+            a=a+'.0'
+        self.hex_dec,self.hex_poi=(a.split('.'))
+        self.hd=self.hexa_decimal(self.hex_dec)
+        self.hp=self.hexa_point(self.hex_poi)
+        self.result=self.decimal_result(self.hd,self.hp)
+    def decimal_result(self,k,t):
+        return k+t
+        
+    def hexa_decimal(self,k):
+        k=k.upper()
+        print(k)
+        self.l=[] 
+        for i in k[::-1]:
+            if i=='A':
+                self.l.append(10)
+            elif i=='B':
+                self.l.append(11)
+            elif i=='C':
+                self.l.append(12)
+            elif i=='D':
+                self.l.append(13)
+            elif i=='E':
+                self.l.append(14)
+            elif i=='F':
+                self.l.append(15)
+            else:
+                self.l.append(int(i))
+        for i in range(len(k)):
+            self.r1+=self.l[i]*(16**i)    
+        return self.r1
+    def hexa_point(self,k):
+        k=k.upper()
+        self.l=[] 
+        for i in k:
+            if i=='A':
+                self.l.append(10)
+            elif i=='B':
+                self.l.append(11)
+            elif i=='C':
+                self.l.append(12)
+            elif i=='D':
+                self.l.append(13)
+            elif i=='E':
+                self.l.append(14)
+            elif i=='F':
+                self.l.append(15)
+            else:
+                self.l.append(int(i))
+        for i in range(len(k)):
+            self.r2+=self.l[i]*(16**(-(i+1)))
         
         return self.r2
