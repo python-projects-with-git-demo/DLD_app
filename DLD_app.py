@@ -239,3 +239,145 @@ class hexa_to_decimal:
             self.r2+=self.l[i]*(16**(-(i+1)))
         
         return self.r2
+class hexadecimal_to_binary:
+    def __init__(self,a):
+        self.result1=hexa_to_decimal(a)
+        self.final_result=deci_binary_conversion(self.result1.result)
+        self.result=self.resultfin()
+    def resultfin(self):
+        return self.final_result.result
+
+class octal_to_binary:
+    def __init__(self,a):
+        self.result1=octal_to_decimal(a)
+        self.final_result=deci_binary_conversion(self.result1.result)
+        self.result=self.resultfin()
+    def resultfin(self):
+        return self.final_result.result
+
+class hexadecimal_to_octal:
+    def __init__(self,a):
+        self.result1=hexa_to_decimal(a)
+        self.final_result=deci_octal_conversion(self.result1.result)
+        self.result=self.resultfin()
+    def resultfin(self):
+        return self.final_result.result
+class binary_to_octal(binary_to_decimal):
+    def __init__(self,a):
+        self.r1=''
+        self.r2=''
+        a=float(a)
+        self.binary_value=str(a)
+        self.bin_dec,self.bin_poi=(self.binary_value.split('.'))
+        self.bo=self.binary_octal(self.bin_dec)
+        self.bp=self.bin_oct_point(self.bin_poi)
+        self.result=self.decimal_result(self.bo,self.bp)
+    def decimal_result(self,k,t):
+        return k+'.'+t
+    def binary_octal(self,k):
+        l=[]
+        t=''
+        if len(k)%3!=0:
+            if len(k)%3==1:
+                k='00'+k 
+            elif len(k)%3==2:
+                k='0'+k
+        for i in k[::-1]+'r':
+            if len(t)!=3:
+                t+=i
+            else:
+                l.append(t[::-1])
+                t=''
+                t+=i
+        
+        for i in l[::-1]:
+            k=binary_to_decimal(i)
+            self.r1+=str(k.bd)
+        
+        return(self.r1)
+    def bin_oct_point(self,k):
+        l=[]
+        t=''
+        if len(k)%3!=0:
+            if len(k)%3==1:
+                k+='00' 
+            elif len(k)%3==2:
+                k+='0'
+        for i in k +'r':
+            if len(t)!=3:
+                t+=i
+            else:
+                l.append(t)
+                t=''
+                t+=i 
+        for i in l:
+            k=binary_to_decimal(i)
+            self.r2+=str(k.bd)
+        
+        return(self.r2)
+class binary_to_hexadecimal:
+    def __init__(self,a):
+        self.r1=''
+        self.r2=''
+        a=float(a)
+        self.binary_value=str(a)
+        self.bin_dec,self.bin_poi=(self.binary_value.split('.'))
+        self.bo=self.binary_hexal(self.bin_dec)
+        self.bp=self.bin_hex_point(self.bin_poi)
+        self.result=self.decimal_result(self.bo,self.bp)
+    def decimal_result(self,k,t):
+        return k+'.'+t
+    def binary_hexal(self,k):
+        l=[]
+        t=''
+        if len(k)%4!=0:
+            if len(k)%4==1:
+                k='000'+k 
+            elif len(k)%4==2:
+                k='00'+k
+            elif len(k)%4==3:
+                k='0'+k
+        for i in k[::-1]+'r':
+            if len(t)!=4:
+                t+=i
+            else:
+                l.append(t[::-1])
+                t=''
+                t+=i
+        
+        for i in l[::-1]:
+            k=binary_to_decimal(i)
+            ro=deci_hexa_conversion(str(k.bd))
+            self.r1+=str(ro.hn)
+        
+        return(self.r1)
+    def bin_hex_point(self,k):
+        l=[]
+        t=''
+        if len(k)%4!=0:
+            if len(k)%4==1:
+                k+='000' 
+            elif len(k)%4==2:
+                k+='00'
+            elif len(k)%4==3:
+                k+='0'
+        for i in k +'r':
+            if len(t)!=4:
+                t+=i
+            else:
+                l.append(t)
+                t=''
+                t+=i 
+        for i in l:
+            k=binary_to_decimal(i)
+            ro=deci_hexa_conversion(k.bd)
+            self.r2+=str(ro.hn)
+        
+        return(self.r2)
+class octal_to_hexadecimal:
+    def __init__(self,a):
+        self.result1=octal_to_binary(a)
+        self.final_result=binary_to_hexadecimal(self.result1.result)
+        self.result=self.resultfin()
+    def resultfin(self):
+        return self.final_result.result
