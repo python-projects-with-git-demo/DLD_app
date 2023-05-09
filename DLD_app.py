@@ -28,7 +28,6 @@ class deci_binary_conversion:
                 bin_dec -= 1
                 self.r2 += '1'
         return self.r2
-a = str(input('enter a number \n'))
 
 class deci_octal_conversion:
     def __init__(self, a):
@@ -197,7 +196,6 @@ class hexa_to_decimal:
         
     def hexa_decimal(self,k):
         k=k.upper()
-        print(k)
         self.l=[] 
         for i in k[::-1]:
             if i=='A':
@@ -237,6 +235,7 @@ class hexa_to_decimal:
                 self.l.append(int(i))
         for i in range(len(k)):
             self.r2+=self.l[i]*(16**(-(i+1)))
+        
         return self.r2
 class hexadecimal_to_binary:
     def __init__(self,a):
@@ -260,7 +259,6 @@ class hexadecimal_to_octal:
         self.final_result=deci_octal_conversion(self.result1.result)
         self.result=self.resultfin()
     def resultfin(self):
-
         return self.final_result.result
 class binary_to_octal(binary_to_decimal):
     def __init__(self,a):
@@ -380,5 +378,129 @@ class octal_to_hexadecimal:
         self.final_result=binary_to_hexadecimal(self.result1.result)
         self.result=self.resultfin()
     def resultfin(self):
-
         return self.final_result.result
+    
+def ones_complement(a):
+    b=''
+    for i in str(a):
+        if i=='0':
+            b+='1'
+        elif i=='1':
+            b+='0'
+    return b
+def twos_complement(a):
+    a=ones_complement(a)
+
+    t=''
+    if a[-1]!='1':
+        r=(int(a[-1]))^1
+        print(r)
+        for i in a[0:len(a)-1]:
+            t+=i
+        
+        t+=str(r)
+        return t
+        
+    else:
+        rep=0
+        
+        r=(int(a[-1]))^1
+        if a[-2]!='1':
+            
+            q=(int(a[-2]))^1
+            for i in a[0:len(a)-2]:
+                t+=i
+            t=t+str(q)+str(r)
+            return t
+        else:
+            a="0"+a
+            while a[-1]!="0":
+                a=a[0:len(a)-1]
+                rep+=1
+            t=a[0:len(a)-1]+str((int(a[-1]))^1)
+           
+            for i in range(rep):
+                t+='0'
+            return t[1:len(t)] 
+def sevens_complement(a):
+    a=list(a)
+    k=''
+    for i in a:
+        k+=str(7-int(i))
+    return k
+def eights_complement(a):
+    a=sevens_complement(a)
+    t=''
+    rep=0
+    if a[-1]!='7':
+        t=str(int(a)+1)
+    else:
+
+        while a[-1]=='7':
+            a='0'+a
+            a=a[0:len(a)-1]
+            rep+=1
+            if a[-1]!='7':
+                t=str(int(a)+1)
+                break
+        t=t[0:len(t)]
+        for i in range(rep):
+            t+='0'
+    return t
+hexadecimal={'0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','A':'10','B':'11','C':'12','D':'13','E':'14','F':'15'}
+def fifteens_complement(a):
+    a=list(a)
+    l=[]
+    repo=0
+    for i in a:
+        i=i.upper()
+        l.append(hexadecimal[i])
+    k=''
+    key_list=list(hexadecimal.keys())
+    val_list=list(hexadecimal.values())
+    for i in l:
+        kl=val_list.index(str(15-int(i)))
+        k+=key_list[kl]
+    return k
+def sixteens_complement(a):
+    a=fifteens_complement(a)
+    print(a)
+    a=list(a)
+    k=''
+    l=[]
+    for i in a:
+        l.append(hexadecimal[i])
+    k=''
+    key_list=list(hexadecimal.keys())
+    val_list=list(hexadecimal.values())
+    if l[-1]!='15':
+        l[-1]=str(int(l[-1])+1)
+        for i in l:
+            kl=val_list.index(str(i))
+            k+=key_list[kl]
+    else:
+        l.insert(0,"0")
+        rep=0
+        while l[-1]=='15':
+            
+            l=l[0:len(l)-1]
+            rep+=1
+            if l[-1]!='15':
+                t=str(int(l[-1])+1)
+                break
+        for i in l[1:len(l)-1]:
+            kl=val_list.index(str(i))
+            k+=key_list[kl]
+        k+=t
+        for i in range(rep):
+            k+='0'
+    return k
+class addition_of_binary:
+    def __init__(self,a,b):
+        self.num1=binary_to_decimal(a)
+        self.num2=binary_to_decimal(b)
+        self.res=self.result(self.num1,self.num2)
+    def result(self,nu1,nu2):
+        self.a= deci_binary_conversion(nu1+nu2)
+        return self.a
+        
