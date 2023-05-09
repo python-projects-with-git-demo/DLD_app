@@ -237,7 +237,6 @@ class hexa_to_decimal:
                 self.l.append(int(i))
         for i in range(len(k)):
             self.r2+=self.l[i]*(16**(-(i+1)))
-        
         return self.r2
 class hexadecimal_to_binary:
     def __init__(self,a):
@@ -261,6 +260,7 @@ class hexadecimal_to_octal:
         self.final_result=deci_octal_conversion(self.result1.result)
         self.result=self.resultfin()
     def resultfin(self):
+
         return self.final_result.result
 class binary_to_octal(binary_to_decimal):
     def __init__(self,a):
@@ -380,4 +380,5 @@ class octal_to_hexadecimal:
         self.final_result=binary_to_hexadecimal(self.result1.result)
         self.result=self.resultfin()
     def resultfin(self):
+
         return self.final_result.result
